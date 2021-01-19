@@ -14,6 +14,10 @@ Vagrant.configure(VAGRANT_VERSION) do |config|
   config.vm.network "private_network", ip: STATIC_IP_ADDRESS 
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "4096"
+  end
+
   config.vm.provision "shell", path: "install.sh"
   config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
 end
